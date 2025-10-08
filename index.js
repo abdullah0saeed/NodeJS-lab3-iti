@@ -9,7 +9,10 @@ require("./middlewares/appLvlMiddleware")(app);
 app.use("/users", require("./routes/user"));
 app.use("/posts", require("./routes/post"));
 
-const port = 3000;
+// Error Handler
+app.use(require("./middlewares/errorHandler"));
+
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server is running on PORT: ${port}`);
   require("./config/connectDB")();
