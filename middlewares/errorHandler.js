@@ -30,6 +30,14 @@ module.exports = (err, req, res, next) => {
     });
   }
 
+  // jwt error
+  if (
+    ["JsonWebTokenError", "TokenExpiredError", "NotBeforeError"].includes(
+      err.name
+    )
+  )
+    return res.status(401).json({ status: "error", message: err.message });
+
   // custom error
   if (err instanceof CustomError)
     return res

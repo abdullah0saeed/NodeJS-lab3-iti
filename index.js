@@ -7,7 +7,7 @@ require("./middlewares/appLvlMiddleware")(app);
 
 // Routes
 app.use("/users", require("./routes/user"));
-app.use("/posts", require("./routes/post"));
+app.use("/posts", require("./middlewares/auth"), require("./routes/post"));
 
 // Error Handler
 app.use(require("./middlewares/errorHandler"));

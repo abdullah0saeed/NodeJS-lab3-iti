@@ -9,6 +9,8 @@ To install and set up the project, follow these steps:
 ```bash
 DATABASE_URL=your-mongodb-url
 PORT=3000
+JWT_SECRET_KEY=your-secret-key
+JWT_EXPIRES_IN=1d
 ```
 
 4. Install the required dependencies using `npm install`

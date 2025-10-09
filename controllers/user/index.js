@@ -1,5 +1,6 @@
 module.exports = {
-  createUser: require("./create"),
+  signup: require("./signup"),
+  login: require("./login"),
   getUsers: require("./getAll"),
   getUserById: require("./getById"),
   updateUser: require("./update"),

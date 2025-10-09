@@ -26,6 +26,25 @@ exports.validateCreateUser = (req, res, next) => {
 
 // ! --------------------------------------------------------------------------------------------
 
+exports.validateLoginUser = (req, res, next) => {
+  const schema = z.object({
+    email: z.string().email({ message: "Invalid email address" }),
+    password: z.string(),
+  });
+
+  const result = schema.safeParse(req.body);
+  if (!result.success) {
+    const errorMessages = result.error.issues
+      ?.map((err) => err.message)
+      .join(", ");
+
+    throw new CustomError(400, errorMessages);
+  }
+  next();
+};
+
+// ! --------------------------------------------------------------------------------------------
+
 exports.validateUpdateUser = (req, res, next) => {
   const schema = z.object({
     name: z.string(),
