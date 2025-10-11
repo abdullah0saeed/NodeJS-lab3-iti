@@ -17,7 +17,7 @@ const restrictTo = require("../middlewares/restrictTo");
 
 router.get("/:id", getPostById);
 router.put("/:id", validateUpdatePost, updatePost);
-router.delete("/:id", restrictTo("admin"), deletePost);
+router.delete("/:id", restrictTo(["admin"]), deletePost);
 router.post("/", validateCreatePost, createPost);
 router.get("/", getPosts);
 
