@@ -6,7 +6,9 @@ const jwtVerify = promisify(jwt.verify);
 
 module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+
   const token = authHeader?.split(" ")[1];
+
   if (!token) throw new CustomError(401, "Missing Auth Header");
 
   const secretKey = process.env.JWT_SECRET_KEY;

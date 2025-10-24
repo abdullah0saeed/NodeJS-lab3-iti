@@ -3,6 +3,7 @@ const router = require("express").Router();
 const {
   createPost,
   getPosts,
+  getUserPosts,
   getPostById,
   updatePost,
   deletePost,
@@ -14,11 +15,13 @@ const {
 } = require("../utils/validators/postValidator");
 
 const restrictTo = require("../middlewares/restrictTo");
+const auth = require("../middlewares/auth");
 
-router.get("/:id", getPostById);
-router.put("/:id", validateUpdatePost, updatePost);
-router.delete("/:id", restrictTo(["admin"]), deletePost);
-router.post("/", validateCreatePost, createPost);
-router.get("/", getPosts);
+router.get("/me", auth, getUserPosts);
+router.get("/:id", auth, getPostById);
+router.put("/:id", auth, validateUpdatePost, updatePost);
+router.delete("/:id", auth, deletePost);
+router.post("/", auth, validateCreatePost, createPost);
+router.get("/", auth, restrictTo(["admin"]), getPosts);
 
 module.exports = router;

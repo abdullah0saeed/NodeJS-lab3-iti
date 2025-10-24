@@ -6,6 +6,8 @@ const createAuthJwt = require("../../utils/createAuthJwt");
 module.exports = async (req, res) => {
   const { name, email, password } = req.body;
 
+  email = email.toLowerCase();
+
   let user = await User.findOne({ email });
   if (user) throw new CustomError(400, "User with this email already exists");
 

@@ -6,11 +6,6 @@ exports.validateCreatePost = (req, res, next) => {
   const schema = z.object({
     title: z.string().min(5, { message: "Title is required" }),
     content: z.string().min(10, { message: "Content is required" }),
-    userId: z
-      .string({ required_error: "User ID is required" })
-      .refine((id) => mongoose.Types.ObjectId.isValid(id), {
-        message: "Invalid User ID",
-      }),
   });
 
   const result = schema.safeParse(req.body);

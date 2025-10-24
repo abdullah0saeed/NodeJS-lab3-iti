@@ -21,6 +21,6 @@ router.put("/:id", auth, validateUpdateUser, updateUser);
 router.delete("/:id", auth, deleteUser);
 router.post("/signup", validateCreateUser, signup);
 router.post("/login", validateLoginUser, login);
-router.get("/", auth, restrictTo("admin"), getUsers);
+router.get("/", getUsers);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const CustomError = require("../../utils/customError");
 
 module.exports = async (req, res) => {
   const { email, password } = req.body;
+  // email = email.toLowerCase();
 
   let user = await User.findOne({ email });
   if (!user) throw new CustomError(400, "Invalid credentials");
